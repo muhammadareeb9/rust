@@ -1,6 +1,5 @@
 #![feature(or_patterns)]
 #![feature(slice_patterns)]
-#![allow(incomplete_features)]
 #![deny(unreachable_patterns)]
 
 // We wrap patterns in a tuple because top-level or-patterns are special-cased for now.
