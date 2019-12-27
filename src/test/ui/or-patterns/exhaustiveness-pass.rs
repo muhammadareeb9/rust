@@ -2,14 +2,10 @@
 #![feature(slice_patterns)]
 #![deny(unreachable_patterns)]
 
-// We wrap patterns in a tuple because top-level or-patterns are special-cased for now.
-fn main() {
-    // Get the fatal error out of the way
-    match (0,) {
-        (0 | _,) => {}
-        //~^ ERROR or-patterns are not fully implemented yet
-    }
+// check-pass
 
+// We wrap patterns in a tuple because top-level or-patterns were special-cased.
+fn main() {
     match (0,) {
         (1 | 2,) => {}
         _ => {}
@@ -26,11 +22,11 @@ fn main() {
         (Some(2..=255),) => {}
     }
     match ((0,),) {
-        ((0 | 1,) | (2 | 3,),) => {},
-        ((_,),) => {},
+        ((0 | 1,) | (2 | 3,),) => {}
+        ((_,),) => {}
     }
     match (&[0u8][..],) {
-        ([] | [0 | 1..=255] | [_, ..],) => {},
+        ([] | [0 | 1..=255] | [_, ..],) => {}
     }
 
     match ((0, 0),) {
